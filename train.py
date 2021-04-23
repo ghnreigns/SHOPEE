@@ -158,7 +158,9 @@ if __name__ == "__main__":
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), **CONFIG["OPTIMIZER"]["Adam"])
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optimizer, **CONFIG["SCHEDULER"]["CosineAnnealingWarmRestarts"]
+        optimizer,
+        T_0=CONFIG["TRAINING"]["NUM_EPOCHS"],
+        T_mult=CONFIG["SCHEDULER"]["CosineAnnealingWarmRestarts"]["T_mult"],
     )
     BEST_F1_SCORE = 0
     BEST_VAL_LOSS = 1000000
