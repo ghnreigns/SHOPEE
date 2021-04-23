@@ -152,7 +152,7 @@ if __name__ == "__main__":
     )
     valid_loader = torch.utils.data.DataLoader(
         dataset_valid,
-        batch_size=CONFIG["TRAINING"]["BATCH_SIZE"],
+        batch_size=CONFIG["VALIDATION"]["BATCH_SIZE"],
         shuffle=False,
         num_workers=CONFIG["VALIDATION"]["NUM_WORKERS"],
     )
