@@ -159,7 +159,7 @@ if __name__ == "__main__":
     optimizer = torch.optim.Adam(model.parameters(), **CONFIG["OPTIMIZER"]["Adam"])
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer,
-        T_0=CONFIG["TRAINING"]["NUM_EPOCHS"],
+        CONFIG["TRAINING"]["NUM_EPOCHS"],
         T_mult=CONFIG["SCHEDULER"]["CosineAnnealingWarmRestarts"]["T_mult"],
     )
     BEST_F1_SCORE = 0
