@@ -31,7 +31,7 @@ class SHOPEE_HIRE_ME_MODEL(nn.Module):
         print(self.num_classes, self.in_features)
 
     def forward(self, x, labels=None):
-
+        print(x.shape)
         features = self.backbone.forward_features(x)
         features_2 = self.backbone.forward(x)
         # print(features_2.shape)
