@@ -109,7 +109,7 @@ def generate_test_features(test_loader):
 
 if __name__ == "__main__":
     from seed import seed_all
-    from make_folds import make_folds
+    from make_folds import makeFold
     from transforms import transforms_train, transforms_valid
     import neptune.new as neptune
 
@@ -132,7 +132,7 @@ if __name__ == "__main__":
     )
     model.to(device)
 
-    df = make_folds()
+    df = makeFold()
     df_train = df[df["fold"] != CONFIG["FOLD"]]
     df_valid = df[df["fold"] == CONFIG["FOLD"]]
 
