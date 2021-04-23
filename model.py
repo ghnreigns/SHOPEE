@@ -8,7 +8,7 @@ from loss import ArcModule
 class SHOPEE_HIRE_ME_MODEL(nn.Module):
     def __init__(
         self,
-        num_classes=2,
+        num_classes=11014,
         dropout=0.3,
         embedding_size=512,
         backbone="vgg16",

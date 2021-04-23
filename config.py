@@ -6,7 +6,7 @@ CONFIG = {
     "MODEL": {"MODEL_NAME": "VGG16", "FC_DIM": 512, "DROPOUT": 0.2},
     "NUM_CLASSES": 11014,
     "TRAINING": {
-        "IMAGE_SIZE": 256,
+        "IMAGE_SIZE": 512,
         "BATCH_SIZE": 16,
         "NUM_EPOCHS": 15,
         "USE_AMP": True,
