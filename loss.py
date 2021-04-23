@@ -24,9 +24,11 @@ class ArcModule(nn.Module):
         cos_th = cos_th.clamp(-1, 1)
         sin_th = torch.sqrt(1.0 - torch.pow(cos_th, 2))
         cos_th_m = cos_th * self.cos_m - sin_th * self.sin_m
+        cos_th = cos_th.float()
+        cos_th_m = cos_th_m.float()
         # print(type(cos_th), type(self.th), type(cos_th_m), type(self.mm))
         cos_th_m = torch.where(cos_th > self.th, cos_th_m, cos_th - self.mm)
-        cos_th_m = cos_th_m.float()
+
         cond_v = cos_th - self.th
         cond = cond_v <= 0
         cos_th_m[cond] = (cos_th - self.mm)[cond]
