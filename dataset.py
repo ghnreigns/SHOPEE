@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 
-class SHOPEEDataset(Dataset):
+class SHOPEEDataset(torch.utils.data.Dataset):
     def __init__(self, df, mode, transform=None):
 
         self.df = df.reset_index(drop=True)
