@@ -20,8 +20,7 @@ def train_func(train_loader):
     for batch_idx, (images, targets) in enumerate(bar):
 
         images, targets = images.to(device), targets.to(device).long()
-        print(images.shape, targets.shape)
-        # print(images.shape, targets.shape)
+
         if CONFIG["TRAINING"]["DEBUG"] and batch_idx == 100:
             print("Debug Mode. Only train on first 100 batches.")
             break
