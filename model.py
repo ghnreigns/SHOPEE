@@ -33,7 +33,7 @@ class SHOPEE_HIRE_ME_MODEL(nn.Module):
 
         features = self.backbone.forward_features(x)
         features_2 = self.backbone.forward(x)
-        print(features_2.shape)
+        # print(features_2.shape)
         print(features.shape)
         # print("features at backbone", features.shape)
         features = self.bn1(features)
@@ -44,9 +44,9 @@ class SHOPEE_HIRE_ME_MODEL(nn.Module):
 
         # print("features at view", features.shape)
         features = self.fc1(features)
-        print(features.shape)
+        # print(features.shape)
         features = self.bn2(features)
-        print(features.shape)
+        # print(features.shape)
         features = F.normalize(features)
         print(features.shape)
         # print(features, features.shape)
