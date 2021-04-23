@@ -156,7 +156,7 @@ if __name__ == "__main__":
         num_workers=CONFIG["VALIDATION"]["NUM_WORKERS"],
     )
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), **CONFIG["OPTIMIZER"]["ADAM"])
+    optimizer = torch.optim.Adam(model.parameters(), **CONFIG["OPTIMIZER"]["Adam"])
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer, **CONFIG["SCHEDULER"]["CosineAnnealingWarmRestarts"]
     )
