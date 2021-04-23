@@ -3,7 +3,8 @@ import numpy as np
 
 CONFIG = {
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
-    "MODEL": "VGG16",
+    "MODEL": {"MODEL_NAME": "VGG16", "FC_DIM": 512, "DROPOUT": 0.2},
+    "NUM_CLASSES": 11014,
     "TRAINING": {
         "IMAGE_SIZE": 256,
         "BATCH_SIZE": 16,

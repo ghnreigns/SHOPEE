@@ -124,9 +124,9 @@ if __name__ == "__main__":
     run["Params"] = CONFIG
 
     model = SHOPEE_HIRE_ME_MODEL(
-        num_classes=2,
-        dropout=0.0,
-        embedding_size=8,
+        num_classes=CONFIG["NUM_CLASSES"],
+        dropout=CONFIG["MODEL"]["DROPOUT"],
+        embedding_size=CONFIG["MODEL"]["FC_DIM"],
         backbone="vgg16",
         pretrained=True,
     )
@@ -174,7 +174,7 @@ if __name__ == "__main__":
             BEST_VAL_LOSS = loss_valid
             torch.save(
                 model.state_dict(),
-                f"BEST_LOSS_{CONFIG['PATH']['SAVE_WEIGHT_PATH']}{CONFIG['MODEL']}_fold{CONFIG['FOLD']}_{CONFIG['TRAINING']['IMAGE_SIZE']}_epoch{epoch}.pth",
+                f"BEST_LOSS_{CONFIG['PATH']['SAVE_WEIGHT_PATH']}{CONFIG['MODEL']['MODEL_NAME']}_fold{CONFIG['FOLD']}_{CONFIG['TRAINING']['IMAGE_SIZE']}_epoch{epoch}.pth",
             )
 
         if epoch % 2 == 0:
@@ -195,5 +195,5 @@ if __name__ == "__main__":
                 BEST_F1_SCORE = best_score
                 torch.save(
                     model.state_dict(),
-                    f"{CONFIG['PATH']['SAVE_WEIGHT_PATH']}{CONFIG['MODEL']}_fold{CONFIG['FOLD']}_{CONFIG['TRAINING']['IMAGE_SIZE']}_epoch{epoch}.pth",
+                    f"{CONFIG['PATH']['SAVE_WEIGHT_PATH']}{CONFIG['MODEL']['MODEL_NAME']}_fold{CONFIG['FOLD']}_{CONFIG['TRAINING']['IMAGE_SIZE']}_epoch{epoch}.pth",
                 )
