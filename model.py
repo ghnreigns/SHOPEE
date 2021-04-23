@@ -26,7 +26,7 @@ class SHOPEE_HIRE_ME_MODEL(nn.Module):
         # print("margin", self.margin)
         self.bn1 = nn.BatchNorm2d(self.in_features)
         self.dropout = nn.Dropout2d(dropout, inplace=True)
-        self.fc1 = nn.Linear(self.in_features, self.embedding_size)
+        self.fc1 = nn.Linear(self.in_features * 16 * 16, self.embedding_size)
         self.bn2 = nn.BatchNorm1d(self.embedding_size)
 
     def forward(self, x, labels=None):
