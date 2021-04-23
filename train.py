@@ -127,7 +127,7 @@ if __name__ == "__main__":
         num_classes=CONFIG["NUM_CLASSES"],
         dropout=CONFIG["MODEL"]["DROPOUT"],
         embedding_size=CONFIG["MODEL"]["FC_DIM"],
-        backbone="vgg16",
+        backbone=CONFIG["MODEL"]["MODEL_NAME"],
         pretrained=True,
     )
     model.to(device)
@@ -141,7 +141,7 @@ if __name__ == "__main__":
     )
 
     dataset_train = SHOPEEDataset(df_train, "train", transform=transforms_train)
-    dataset_valid = SHOPEEDataset(df_valid, "test", transform=transforms_valid)
+    dataset_valid = SHOPEEDataset(df_valid, "valid", transform=transforms_valid)
 
     train_loader = torch.utils.data.DataLoader(
         dataset_train,
