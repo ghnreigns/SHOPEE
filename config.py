@@ -12,7 +12,7 @@ CONFIG = {
         "USE_AMP": True,
         "NUM_WORKERS": 4,
         "ACCUMULATION_STEP": 1,
-        "DEBUG": False,
+        "DEBUG": True,
     },
     "VALIDATION": {"BATCH_SIZE": 32, "NUM_WORKERS": 4},
     "OPTIMIZER": {"Adam": {"lr": 1e-4}},
