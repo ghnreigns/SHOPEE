@@ -132,7 +132,13 @@ if __name__ == "__main__":
     #     pretrained=True,
     # )
     # model.to(device)
-    model = HN_NFNET_l0(512, 11014)
+    model = SHOPEE_HIRE_ME_MODEL_V2(
+        num_classes=CONFIG["NUM_CLASSES"],
+        dropout=CONFIG["MODEL"]["DROPOUT"],
+        embedding_size=CONFIG["MODEL"]["FC_DIM"],
+        backbone=CONFIG["MODEL"]["MODEL_NAME"],
+        pretrained=True,
+    )
     model = model.to(device)
     df = makeFold()
     df_train = df[df["fold"] != CONFIG["FOLD"]]
