@@ -190,10 +190,10 @@ if __name__ == "__main__":
         scheduler.step()
         loss_train = train_func(train_loader)
         loss_valid, valid_accuracy = valid_func(valid_loader)
-        run["TRAINING/LOSS_VALUE"] = loss_train
-        run["VALIDATION/LOSS_VALUE"] = loss_train
-        run["VALIDATION/LOSS_VALUE"] = valid_accuracy
-        print("{} | {}".format(epoch, valid_accuracy))
+        run["TRAINING/LOSS_VALUE"].log(loss_train)
+        run["VALIDATION/LOSS_VALUE"].log(loss_train)
+        run["VALIDATION/ACCURACY"].log(valid_accuracy)
+
         if loss_valid < BEST_VAL_LOSS:
             BEST_VAL_LOSS = loss_valid
             torch.save(
