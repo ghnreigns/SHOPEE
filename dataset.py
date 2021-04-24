@@ -22,7 +22,7 @@ class SHOPEEDataset(torch.utils.data.Dataset):
             res = self.transform(image=img)
             img = res["image"]
 
-        img = img.astype(np.float32)
+        # img = img.astype(np.float32)
         img = img.transpose(2, 0, 1)
 
         img = torch.tensor(img).float()
