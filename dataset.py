@@ -27,7 +27,7 @@ class SHOPEEDataset(torch.utils.data.Dataset):
         if img.shape[0] != 3 and img.shape[0] != 1:
             img = np.transpose(img, (2, 0, 1)).astype(np.float32)
 
-        img = torch.tensor(img).float()
+        # img = torch.tensor(img).float()
         label = torch.tensor(row.label_group).float()
 
         if self.mode == "test":

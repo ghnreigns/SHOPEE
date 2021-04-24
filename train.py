@@ -132,6 +132,10 @@ if __name__ == "__main__":
     #     pretrained=True,
     # )
     # model.to(device)
+    if not os.path.exists(CONFIG["PATH"]["SAVE_PATH"]):
+        print("new save folder created")
+        os.makedirs(CONFIG["PATH"]["SAVE_PATH"])
+
     model = SHOPEE_EfficientNetB4(
         num_classes=CONFIG["NUM_CLASSES"],
         dropout=CONFIG["MODEL"]["DROPOUT"],
