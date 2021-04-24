@@ -107,3 +107,49 @@ class SHOPEE_HIRE_ME_MODEL_IDKSHAPEERROR(nn.Module):
             # print("Margin | {} | {}".format(MARGIN, MARGIN.shape))
             return self.margin(features, labels)
         return features
+
+
+class HN_NFNET_l0(nn.Module):
+    def __init__(
+        self,
+        channel_size,
+        out_feature,
+        dropout=0.2,
+        backbone="eca_nfnet_l1",
+        pretrained=True,
+    ):
+        super(HN_NFNET_l0, self).__init__()
+        self.backbone = timm.create_model(backbone, pretrained=pretrained)
+        self.channel_size = channel_size
+        self.out_feature = out_feature
+        self.in_features = self.backbone.head.fc.in_features
+        print(self.in_features)
+        self.margin = ArcModule(
+            in_features=self.channel_size, out_features=self.out_feature
+        )
+        # print("margin", self.margin)
+        self.bn1 = nn.BatchNorm2d(self.in_features)
+        self.dropout = nn.Dropout2d(dropout, inplace=True)
+        self.fc1 = nn.Linear(self.in_features * 16 * 16, self.channel_size)
+        self.bn2 = nn.BatchNorm1d(self.channel_size)
+
+    def forward(self, x, labels=None):
+
+        features = self.backbone.forward_features(x)
+
+        # print("features at backbone", features.shape)
+        features = self.bn1(features)
+        features = self.dropout(features)
+        print(features.shape)
+        features = features.view(features.size(0), -1)
+        # print("features at view", features.shape)
+        features = self.fc1(features)
+        # print(features.shape)
+        features = self.bn2(features)
+        features = F.normalize(features)
+        # print(features, features.shape)
+        if labels is not None:
+            MARGIN = self.margin(features, labels)
+            # print("Margin | {} | {}".format(MARGIN, MARGIN.shape))
+            return self.margin(features, labels)
+        return features
