@@ -175,7 +175,8 @@ class TEST_MODEL(nn.Module):
         self.backbone = timm.create_model(backbone, pretrained=pretrained)
         self.channel_size = channel_size
         self.out_feature = out_feature
-        self.in_features = self.backbone.head.fc.in_features
+        # self.in_features = self.backbone.head.fc.in_features
+        self.in_features = self.backbone.classifier.in_features
         print(self.in_features)
         self.margin = ArcModule(
             in_features=self.channel_size,
