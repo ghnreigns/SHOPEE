@@ -3,6 +3,7 @@ import torch.nn as nn
 import timm
 import torch.nn.functional as F
 from loss import ArcModule
+from config import CONFIG
 
 
 class SHOPEE_HIRE_ME_MODEL(nn.Module):
@@ -125,7 +126,9 @@ class HN_NFNET_l0(nn.Module):
         self.in_features = self.backbone.head.fc.in_features
         print(self.in_features)
         self.margin = ArcModule(
-            in_features=self.channel_size, out_features=self.out_feature
+            in_features=self.channel_size,
+            out_features=self.out_feature,
+            **CONFIG["ArcFace"]
         )
         # print("margin", self.margin)
         self.bn1 = nn.BatchNorm2d(self.in_features)
