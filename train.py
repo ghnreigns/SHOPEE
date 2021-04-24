@@ -188,7 +188,7 @@ if __name__ == "__main__":
                     CONFIG["FOLD"],
                     epoch,
                     CONFIG["MODEL"]["MODEL_NAME"],
-                    CONFIG["MODEL"]["IMAGE_SIZE"],
+                    CONFIG["TRAINING"]["IMAGE_SIZE"],
                 ),
             )
 
