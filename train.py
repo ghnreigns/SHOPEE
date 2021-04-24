@@ -6,7 +6,7 @@ import numpy as np
 import torch.nn.functional as F
 from loss import ArcModule
 from dataset import SHOPEEDataset
-from model import SHOPEE_HIRE_ME_MODEL
+from model import *
 from tqdm import tqdm
 from config import CONFIG
 from threshold import find_threshold
@@ -124,15 +124,16 @@ if __name__ == "__main__":
 
     run["Params"] = CONFIG
 
-    model = SHOPEE_HIRE_ME_MODEL(
-        num_classes=CONFIG["NUM_CLASSES"],
-        dropout=CONFIG["MODEL"]["DROPOUT"],
-        embedding_size=CONFIG["MODEL"]["FC_DIM"],
-        backbone=CONFIG["MODEL"]["MODEL_NAME"],
-        pretrained=True,
-    )
-    model.to(device)
-
+    # model = SHOPEE_HIRE_ME_MODEL(
+    #     num_classes=CONFIG["NUM_CLASSES"],
+    #     dropout=CONFIG["MODEL"]["DROPOUT"],
+    #     embedding_size=CONFIG["MODEL"]["FC_DIM"],
+    #     backbone=CONFIG["MODEL"]["MODEL_NAME"],
+    #     pretrained=True,
+    # )
+    # model.to(device)
+    model = HN_NFNET_l0(512, 11014)
+    model = model.to(device)
     df = makeFold()
     df_train = df[df["fold"] != CONFIG["FOLD"]]
     df_valid = df[df["fold"] == CONFIG["FOLD"]]

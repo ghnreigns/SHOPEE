@@ -27,7 +27,7 @@ CONFIG = {
         "TRAIN_PATH": "/content/train_images",
         "SAVE_WEIGHT_PATH": "'/content/drive/My Drive/SHOPEE/WEIGHTS/VGG16",
     },
-    "FOLD": 1,
+    "FOLD": 0,
     "SEARCH_SPACE": np.arange(40, 100, 10),
     "SEED": 1930,
 }
