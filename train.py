@@ -184,11 +184,10 @@ if __name__ == "__main__":
             torch.save(
                 model.state_dict(),
                 os.path.join(CONFIG["PATH"]["SAVE_WEIGHT_PATH"]),
-                "BEST_LOSS_FOLD_{}_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}".format(
+                "BEST_LOSS_FOLD_{}_EPOCH_{}_MODEL_{}".format(
                     CONFIG["FOLD"],
                     epoch,
                     CONFIG["MODEL"]["MODEL_NAME"],
-                    str(CONFIG["TRAINING"]["IMAGE_SIZE"]),
                 ),
             )
 
