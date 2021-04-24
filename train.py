@@ -4,10 +4,14 @@ import timm
 import os
 import numpy as np
 import torch.nn.functional as F
+import warnings
+
+warnings.filterwarnings("ignore")
+from tqdm import tqdm
+
 from loss import ArcModule
 from dataset import SHOPEEDataset
 from model import *
-from tqdm import tqdm
 from config import CONFIG
 from threshold import find_threshold
 
@@ -185,25 +189,25 @@ if __name__ == "__main__":
     for epoch in range(CONFIG["TRAINING"]["NUM_EPOCHS"]):
         scheduler.step()
         loss_train = train_func(train_loader)
-        # loss_valid, valid_accuracy = valid_func(valid_loader)
-        # run["TRAINING/LOSS_VALUE"] = loss_train
-        # run["VALIDATION/LOSS_VALUE"] = loss_train
-        # run["VALIDATION/LOSS_VALUE"] = valid_accuracy
-        # print("{} | {}".format(epoch, valid_accuracy))
-        # if loss_valid < BEST_VAL_LOSS:
-        #     BEST_VAL_LOSS = loss_valid
-        #     torch.save(
-        #         model.state_dict(),
-        #         os.path.join(
-        #             CONFIG["PATH"]["SAVE_WEIGHT_PATH"],
-        #             "BEST_LOSS_FOLD_{}_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}.pt".format(
-        #                 CONFIG["FOLD"],
-        #                 epoch,
-        #                 CONFIG["MODEL"]["MODEL_NAME"],
-        #                 str(CONFIG["TRAINING"]["IMAGE_SIZE"]),
-        #             ),
-        #         ),
-        #     )
+        loss_valid, valid_accuracy = valid_func(valid_loader)
+        run["TRAINING/LOSS_VALUE"] = loss_train
+        run["VALIDATION/LOSS_VALUE"] = loss_train
+        run["VALIDATION/LOSS_VALUE"] = valid_accuracy
+        print("{} | {}".format(epoch, valid_accuracy))
+        if loss_valid < BEST_VAL_LOSS:
+            BEST_VAL_LOSS = loss_valid
+            torch.save(
+                model.state_dict(),
+                os.path.join(
+                    CONFIG["PATH"]["SAVE_WEIGHT_PATH"],
+                    "BEST_LOSS_FOLD_{}_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}.pt".format(
+                        CONFIG["FOLD"],
+                        epoch,
+                        CONFIG["MODEL"]["MODEL_NAME"],
+                        str(CONFIG["TRAINING"]["IMAGE_SIZE"]),
+                    ),
+                ),
+            )
 
         if epoch % 2 == 0:
             print(
