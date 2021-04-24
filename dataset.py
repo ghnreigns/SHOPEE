@@ -23,7 +23,9 @@ class SHOPEEDataset(torch.utils.data.Dataset):
             img = res["image"]
 
         # img = img.astype(np.float32)
-        img = img.transpose(2, 0, 1)
+        ### We using PyTorch so channels first "Raise Channels Last Error"
+        if img.shape[0] != 3 and img.shape[0] != 1:
+            img = np.transpose(img, (2, 0, 1)).astype(np.float32)
 
         img = torch.tensor(img).float()
         label = torch.tensor(row.label_group).float()
