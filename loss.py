@@ -5,11 +5,11 @@ import math
 
 
 class ArcModule(nn.Module):
-    def __init__(self, in_features, out_features, s=64, m=0.5):
+    def __init__(self, in_features, out_features, scale=64, m=0.5):
         super().__init__()
         self.in_features = in_features
         self.out_features = out_features
-        self.s = s
+        self.scale = scale
         self.m = m
         self.weight = nn.Parameter(torch.FloatTensor(out_features, in_features))
         nn.init.xavier_normal_(self.weight)
@@ -39,5 +39,5 @@ class ArcModule(nn.Module):
         labels = labels.type(torch.LongTensor).cuda()
         onehot.scatter_(1, labels, 1.0)
         outputs = onehot * cos_th_m + (1.0 - onehot) * cos_th
-        outputs = outputs * self.s
+        outputs = outputs * self.scale
         return outputs
