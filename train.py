@@ -150,6 +150,7 @@ if __name__ == "__main__":
 
     dataset_train = SHOPEEDataset(df_train, "train", transform=transforms_train)
     dataset_valid = SHOPEEDataset(df_valid, "valid", transform=transforms_valid)
+    dataset_test = SHOPEEDataset(df_valid, "test", transform=transforms_valid)
 
     train_loader = torch.utils.data.DataLoader(
         dataset_train,
@@ -198,7 +199,7 @@ if __name__ == "__main__":
             print(
                 "Now generating features for the validation set to simulate the submission."
             )
-            FEAS = generate_test_features(valid_loader)
+            FEAS = generate_test_features(dataset_test)
             FEAS = torch.tensor(FEAS).cuda()
             print("Finding Best Threshold in the given search space.")
             best_score, best_threshold = find_threshold(
