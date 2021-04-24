@@ -9,7 +9,7 @@ CONFIG = {
         "IMAGE_SIZE": 512,
         "BATCH_SIZE": 8,
         "NUM_EPOCHS": 15,
-        "USE_AMP": False,
+        "USE_AMP": True,
         "NUM_WORKERS": 4,
         "ACCUMULATION_STEP": 1,
         "DEBUG": False,
