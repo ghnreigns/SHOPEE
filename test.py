@@ -6,22 +6,7 @@ from config import CONFIG
 if __name__ == "__main__":
     seed_all()
     device = "cuda"
-    # model = SHOPEE_HIRE_ME_MODEL(
-    #     num_classes=2,
-    #     dropout=0.0,
-    #     embedding_size=8,
-    #     backbone="vgg16",
-    #     pretrained=True,
-    # )
-    # model.to(device)
-    # model = SHOPEE_HIRE_ME_MODEL(
-    #     num_classes=CONFIG["NUM_CLASSES"],
-    #     dropout=CONFIG["MODEL"]["DROPOUT"],
-    #     embedding_size=CONFIG["MODEL"]["FC_DIM"],
-    #     backbone="vgg16",
-    #     pretrained=True,
-    # )
-    # model.to(device)
+
     torch.cuda.empty_cache()
     model = TEST_MODEL(
         channel_size=512,
