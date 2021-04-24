@@ -15,7 +15,7 @@ CONFIG = {
         "DEBUG": True,
         "DROP_LAST": True,
     },
-    "VALIDATION": {"BATCH_SIZE": 16, "NUM_WORKERS": 4},
+    "VALIDATION": {"BATCH_SIZE": 8, "NUM_WORKERS": 4},
     "OPTIMIZER": {"Adam": {"lr": 1e-4}},
     "SCHEDULER": {
         "CosineAnnealingWarmRestarts": {"T_0": 15, "T_mult": 2, "eta_min": 0}

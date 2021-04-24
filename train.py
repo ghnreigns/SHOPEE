@@ -165,6 +165,12 @@ if __name__ == "__main__":
         shuffle=False,
         num_workers=CONFIG["VALIDATION"]["NUM_WORKERS"],
     )
+    test_loader = torch.utils.data.DataLoader(
+        dataset_test,
+        batch_size=CONFIG["VALIDATION"]["BATCH_SIZE"],
+        shuffle=False,
+        num_workers=CONFIG["VALIDATION"]["NUM_WORKERS"],
+    )
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), **CONFIG["OPTIMIZER"]["Adam"])
     scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
@@ -199,7 +205,7 @@ if __name__ == "__main__":
             print(
                 "Now generating features for the validation set to simulate the submission."
             )
-            FEAS = generate_test_features(dataset_test)
+            FEAS = generate_test_features(test_loader)
             FEAS = torch.tensor(FEAS).cuda()
             print("Finding Best Threshold in the given search space.")
             best_score, best_threshold = find_threshold(
