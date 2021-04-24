@@ -7,7 +7,7 @@ CONFIG = {
     "NUM_CLASSES": 11014,
     "TRAINING": {
         "IMAGE_SIZE": 512,
-        "BATCH_SIZE": 2,
+        "BATCH_SIZE": 8,
         "NUM_EPOCHS": 15,
         "USE_AMP": False,
         "NUM_WORKERS": 4,
@@ -20,7 +20,7 @@ CONFIG = {
     "SCHEDULER": {
         "CosineAnnealingWarmRestarts": {"T_0": 15, "T_mult": 2, "eta_min": 0}
     },
-    "ArcFace": {"scale": 64.0, "margin": 0.50, "easy_margin": False, "ls_eps": 0.0},
+    "ArcFace": {"scale": 10, "margin": 0.5, "easy_margin": False, "ls_eps": 0.0},
     "AUGMENTATION": {},
     "PATH": {
         "TRAINING_CSV": "/content/train.csv",
