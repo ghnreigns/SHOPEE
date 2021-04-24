@@ -3,11 +3,11 @@ import numpy as np
 
 CONFIG = {
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
-    "MODEL": {"MODEL_NAME": "eca_nfnet_l1", "FC_DIM": 512, "DROPOUT": 0.2},
+    "MODEL": {"MODEL_NAME": "tf_efficientnet_b4_ns", "FC_DIM": 512, "DROPOUT": 0.2},
     "NUM_CLASSES": 11014,
     "TRAINING": {
         "IMAGE_SIZE": 512,
-        "BATCH_SIZE": 8,
+        "BATCH_SIZE": 16,
         "NUM_EPOCHS": 15,
         "USE_AMP": False,
         "NUM_WORKERS": 4,
