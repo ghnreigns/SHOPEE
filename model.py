@@ -188,7 +188,7 @@ class TEST_MODEL(nn.Module):
         self.bn1 = nn.BatchNorm2d(self.in_features)
         self.dropout = nn.Dropout2d(dropout, inplace=True)
 
-        self.fc1 = nn.Linear(self.in_features, self.channel_size)
+        self.fc1 = nn.Linear(self.in_features * 16 * 16, self.channel_size)  # * 16 * 16
         self.bn2 = nn.BatchNorm1d(self.channel_size)
 
     def forward(self, x, labels=None):
@@ -200,7 +200,7 @@ class TEST_MODEL(nn.Module):
         print("after bn1", features.shape)
         features = self.dropout(features)
         print("after dropout2d", features.shape)
-        features = self.adaptive_avg_pool(features)
+        # features = self.adaptive_avg_pool(features)
         features = features.view(features.size(0), -1)
 
         print("features at view", features.shape)
