@@ -29,7 +29,7 @@ class ArcModule(nn.Module):
 
     def forward(self, inputs, labels):
         cos_th = F.linear(inputs, F.normalize(self.weight))
-        cos_th = cos_th.astype("float32")
+        cos_th = cos_th.float()
         cos_th = cos_th.clamp(-1, 1)
         sin_th = torch.sqrt(1.0 - torch.pow(cos_th, 2))
         cos_th_m = cos_th * self.cos_m - sin_th * self.sin_m
