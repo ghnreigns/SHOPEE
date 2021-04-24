@@ -1,4 +1,5 @@
 import albumentations
+from albumentations.pytorch.transforms import ToTensorV2
 from config import CONFIG
 
 transforms_train = albumentations.Compose(
@@ -18,6 +19,7 @@ transforms_train = albumentations.Compose(
         ),
         # albumentations.CoarseDropout(p=0.5),
         albumentations.Normalize(),
+        ToTensorV2(p=1.0),
     ]
 )
 
@@ -27,5 +29,6 @@ transforms_valid = albumentations.Compose(
             CONFIG["TRAINING"]["IMAGE_SIZE"], CONFIG["TRAINING"]["IMAGE_SIZE"]
         ),
         albumentations.Normalize(),
+        ToTensorV2(p=1.0),
     ]
 )
