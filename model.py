@@ -78,8 +78,8 @@ class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
         self.bn1 = nn.BatchNorm2d(self.in_features)
         self.dropout = nn.Dropout2d(dropout, inplace=True)
 
-        self.fc1 = nn.Linear(self.in_features, self.channel_size)
-        self.bn2 = nn.BatchNorm1d(self.channel_size)
+        self.fc1 = nn.Linear(self.in_features, self.embedding_size)
+        self.bn2 = nn.BatchNorm1d(self.embedding_size)
         self.ArcMargin = ArcModule(
             in_features=self.embedding_size,
             out_features=self.num_classes,
