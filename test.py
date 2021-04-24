@@ -27,7 +27,7 @@ if __name__ == "__main__":
         channel_size=512,
         out_feature=11014,
         dropout=0.0,
-        backbone="vgg16",
+        backbone="densenet121",
         pretrained=True,
     )
     model = model.to(device)
