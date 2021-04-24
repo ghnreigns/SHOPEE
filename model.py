@@ -39,7 +39,7 @@ class SHOPEE_HIRE_ME_MODEL(nn.Module):
         )  # fc_dim is the embeddings we want, which is proposed to be 512.
 
         self.ArcMargin = ArcModule(
-            in_features=self.embedding_size, out_features=self.num_classes, s=64, m=0.5
+            in_features=self.embedding_size, out_features=self.num_classes, s=10, m=0.5
         )
 
     def forward(self, x, labels=None):
