@@ -72,25 +72,14 @@ class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
         self.num_classes = num_classes
         self.backbone = timm.create_model(backbone, pretrained=pretrained)
         self.backbone.reset_classifier(num_classes=0, global_pool="avg")
-        self.adaptive_pooling = torch.nn.AdaptiveAvgPool2d((1, 1))
+        self.adaptive_pooling = torch.nn.AdaptiveAvgPool2d(output_size=(1, 1))
         self.in_features = self.backbone.num_features
 
-        self.BN_DR_FC_BN = torch.nn.Sequential(  # Now since the classifier head is reset, we replace it with                                                                             #
-            torch.nn.BatchNorm2d(
-                self.in_features
-            ),  # BN_DR_FC_BN - the proposed layer architecture by ArcFace.
-            torch.nn.Dropout(
-                p=0.1
-            ),  # Applies Batch Normalization over a 2D or 3D input and since
-            self.adaptive_pooling,
-            torch.nn.Linear(
-                self.in_features, self.embedding_size
-            ),  # the previous layer output is [16, 4096, 1] we ise BN_1D
-            torch.nn.BatchNorm1d(
-                self.embedding_size
-            ),  # and lastly connect with Dropout, FC and BN again. where
-        )  # fc_dim is the embeddings we want, which is proposed to be 512.
+        self.bn1 = nn.BatchNorm2d(self.in_features)
+        self.dropout = nn.Dropout2d(dropout, inplace=True)
 
+        self.fc1 = nn.Linear(self.in_features, self.channel_size)
+        self.bn2 = nn.BatchNorm1d(self.channel_size)
         self.ArcMargin = ArcModule(
             in_features=self.embedding_size,
             out_features=self.num_classes,
@@ -100,14 +89,25 @@ class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
     def forward(self, x, labels=None):
 
         features = self.backbone.forward_features(x)
-        # print(features.shape)
-        # features = self.adaptive_pooling(features)
-        # print(features.shape)
-        features = self.BN_DR_FC_BN(features)
+
+        print("features at backbone", features.shape)
+        features = self.bn1(features)
+        print("after bn1", features.shape)
+        features = self.dropout(features)
+        print("after dropout2d", features.shape)
+        features = self.adaptive_avg_pool(features)
+        features = features.view(features.size(0), -1)
+
+        print("features at view", features.shape)
+        features = self.fc1(features)
+        print("after fc1", features.shape)
+        features = self.bn2(features)
+        features = F.normalize(features)
+        # print(features, features.shape)
         if labels is not None:
-            arcfaceLogits = self.ArcMargin(features, labels)
+            MARGIN = self.margin(features, labels)
             # print("Margin | {} | {}".format(MARGIN, MARGIN.shape))
-            return arcfaceLogits
+            return self.margin(features, labels)
         return features
 
 
