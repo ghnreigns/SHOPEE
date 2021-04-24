@@ -183,9 +183,11 @@ class TEST_MODEL(nn.Module):
             out_features=self.out_feature,
             **CONFIG["ArcFace"]
         )
+        self.adaptive_avg_pool = torch.nn.AdaptiveAvgPool2d((1, 1))
         # print("margin", self.margin)
         self.bn1 = nn.BatchNorm2d(self.in_features)
         self.dropout = nn.Dropout2d(dropout, inplace=True)
+
         self.fc1 = nn.Linear(self.in_features * 16 * 16, self.channel_size)
         self.bn2 = nn.BatchNorm1d(self.channel_size)
 
@@ -198,6 +200,7 @@ class TEST_MODEL(nn.Module):
         print("after bn1", features.shape)
         features = self.dropout(features)
         print("after dropout2d", features.shape)
+        features = self.adaptive_avg_pool(features)
         features = features.view(features.size(0), -1)
 
         print("features at view", features.shape)

@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # print("input:\t{}\noutput:\t{}".format(x.shape, y1.shape))
     # print("output value", y1[0][0])
 
-    x = torch.rand(2, 3, 512, 512).to(
+    x = torch.rand(2, 3, 64, 64).to(
         device
     )  # 16 batch size, of 512 size images of 3 channels
     y = torch.rand(2).to(device)
