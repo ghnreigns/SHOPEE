@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import timm
+import os
 import numpy as np
 import torch.nn.functional as F
 from loss import ArcModule
@@ -148,6 +149,7 @@ if __name__ == "__main__":
         batch_size=CONFIG["TRAINING"]["BATCH_SIZE"],
         shuffle=True,
         num_workers=CONFIG["TRAINING"]["NUM_WORKERS"],
+        drop_last=CONFIG["TRAINING"]["DROP_LAST"],  # NEEDED FOR BN LAYERS TO DROP LAST.
     )
     valid_loader = torch.utils.data.DataLoader(
         dataset_valid,
@@ -174,7 +176,13 @@ if __name__ == "__main__":
             BEST_VAL_LOSS = loss_valid
             torch.save(
                 model.state_dict(),
-                f"BEST_LOSS_{CONFIG['PATH']['SAVE_WEIGHT_PATH']}{CONFIG['MODEL']['MODEL_NAME']}_fold{CONFIG['FOLD']}_{CONFIG['TRAINING']['IMAGE_SIZE']}_epoch{epoch}.pth",
+                os.path.join(CONFIG["PATH"]["SAVE_WEIGHT_PATH"]),
+                "BEST_LOSS_FOLD_{}_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}".format(
+                    CONFIG["FOLD"],
+                    epoch,
+                    CONFIG["MODEL"]["MODEL_NAME"],
+                    CONFIG["MODEL"]["IMAGE_SIZE"],
+                ),
             )
 
         if epoch % 2 == 0:
