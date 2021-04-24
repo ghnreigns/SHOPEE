@@ -132,7 +132,7 @@ if __name__ == "__main__":
     #     pretrained=True,
     # )
     # model.to(device)
-    model = SHOPEE_HIRE_ME_MODEL_V2(
+    model = SHOPEE_EfficientNetB4(
         num_classes=CONFIG["NUM_CLASSES"],
         dropout=CONFIG["MODEL"]["DROPOUT"],
         embedding_size=CONFIG["MODEL"]["FC_DIM"],

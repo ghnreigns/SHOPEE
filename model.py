@@ -57,7 +57,7 @@ class SHOPEE_HIRE_ME_MODEL(nn.Module):
         return features
 
 
-class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
+class SHOPEE_EfficientNetB4(nn.Module):
     def __init__(
         self,
         num_classes=11014,
@@ -66,7 +66,7 @@ class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
         backbone="vgg16",
         pretrained=True,
     ):
-        super(SHOPEE_HIRE_ME_MODEL_V2, self).__init__()
+        super(SHOPEE_EfficientNetB4, self).__init__()
 
         self.embedding_size = embedding_size
         self.num_classes = num_classes
