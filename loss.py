@@ -5,7 +5,15 @@ import math
 
 
 class ArcModule(nn.Module):
-    def __init__(self, in_features, out_features, scale=64, margin=0.5):
+    def __init__(
+        self,
+        in_features,
+        out_features,
+        scale=64,
+        margin=0.5,
+        easy_margin=False,
+        ls_eps=0,
+    ):
         super().__init__()
         self.in_features = in_features
         self.out_features = out_features
