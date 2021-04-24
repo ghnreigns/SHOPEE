@@ -82,6 +82,7 @@ class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
             torch.nn.Dropout(
                 p=0.1
             ),  # Applies Batch Normalization over a 2D or 3D input and since
+            self.adaptive_pooling,
             torch.nn.Linear(
                 self.in_features, self.embedding_size
             ),  # the previous layer output is [16, 4096, 1] we ise BN_1D
@@ -99,9 +100,9 @@ class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
     def forward(self, x, labels=None):
 
         features = self.backbone.forward_features(x)
-        print(features.shape)
-        features = self.adaptive_pooling(features)
-        print(features.shape)
+        # print(features.shape)
+        # features = self.adaptive_pooling(features)
+        # print(features.shape)
         features = self.BN_DR_FC_BN(features)
         if labels is not None:
             arcfaceLogits = self.ArcMargin(features, labels)
