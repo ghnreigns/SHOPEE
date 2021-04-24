@@ -25,7 +25,7 @@ CONFIG = {
     "PATH": {
         "TRAINING_CSV": "/content/train.csv",
         "TRAIN_PATH": "/content/train_images",
-        "SAVE_WEIGHT_PATH": "'/content/drive/My Drive/SHOPEE/WEIGHTS/VGG16",
+        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/SHOPEE/WEIGHTS/VGG16",
     },
     "FOLD": 0,
     "SEARCH_SPACE": np.arange(40, 100, 10),
