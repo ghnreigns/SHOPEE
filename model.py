@@ -105,9 +105,9 @@ class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
         features = F.normalize(features)
         # print(features, features.shape)
         if labels is not None:
-            MARGIN = self.margin(features, labels)
+            arcfaceLogits = self.ArcMargin(features, labels)
             # print("Margin | {} | {}".format(MARGIN, MARGIN.shape))
-            return self.margin(features, labels)
+            return arcfaceLogits
         return features
 
 
