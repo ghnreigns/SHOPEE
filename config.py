@@ -12,7 +12,7 @@ CONFIG = {
         "USE_AMP": True,
         "NUM_WORKERS": 4,
         "ACCUMULATION_STEP": 1,
-        "DEBUG": False,
+        "DEBUG": True,
         "DROP_LAST": True,
     },
     "VALIDATION": {"BATCH_SIZE": 8, "NUM_WORKERS": 4},
