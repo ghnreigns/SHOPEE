@@ -99,7 +99,9 @@ class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
     def forward(self, x, labels=None):
 
         features = self.backbone.forward_features(x)
+        print(features.shape)
         features = self.adaptive_pooling(features)
+        print(features.shape)
         features = self.BN_DR_FC_BN(features)
         if labels is not None:
             arcfaceLogits = self.ArcMargin(features, labels)
