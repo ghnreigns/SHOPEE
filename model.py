@@ -95,7 +95,7 @@ class SHOPEE_HIRE_ME_MODEL_V2(nn.Module):
         print("after bn1", features.shape)
         features = self.dropout(features)
         print("after dropout2d", features.shape)
-        features = self.adaptive_avg_pool(features)
+        features = self.adaptive_pooling(features)
         features = features.view(features.size(0), -1)
 
         print("features at view", features.shape)
