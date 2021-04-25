@@ -69,8 +69,8 @@ class ArcFaceLoss(nn.Module):
         output = (one_hot * phi) + ((1.0 - one_hot) * cosine)
         output *= self.scale
         # print(output)
-        cross_entropy_loss = nn.CrossEntropyLoss()(output, label)
-        return cross_entropy_loss
+        # cross_entropy_loss = nn.CrossEntropyLoss()(output, label)
+        return output  # cross_entropy_loss #TODO: dont put cross entropy here, very hard to keep track.
 
         # # cos_th = F.linear(inputs, F.normalize(self.weight))
         # cos_th = cosine_theta_logits
