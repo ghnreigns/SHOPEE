@@ -16,7 +16,7 @@ from config import CONFIG
 from threshold import find_threshold
 
 
-def train_func(train_loader):
+def train_func(model, train_loader):
     model.train()
     bar = tqdm(train_loader)
     if CONFIG["TRAINING"]["USE_AMP"]:
@@ -59,7 +59,7 @@ def train_func(train_loader):
     return loss_train
 
 
-def valid_func(valid_loader):
+def valid_func(model, valid_loader):
     model.eval()
     bar = tqdm(valid_loader)
 
@@ -91,7 +91,7 @@ def valid_func(valid_loader):
     return loss_valid, accuracy
 
 
-def generate_test_features(test_loader):
+def generate_test_features(model, test_loader):
     model.eval()
     bar = tqdm(test_loader)
 
@@ -189,8 +189,8 @@ if __name__ == "__main__":
     BEST_VAL_LOSS = 1000000
     for epoch in range(CONFIG["TRAINING"]["NUM_EPOCHS"]):
         scheduler.step()
-        loss_train = train_func(train_loader)
-        loss_valid, valid_accuracy = valid_func(valid_loader)
+        loss_train = train_func(model, train_loader)
+        loss_valid, valid_accuracy = valid_func(model, valid_loader)
         run["TRAINING/LOSS_VALUE"].log(loss_train)
         run["VALIDATION/LOSS_VALUE"].log(loss_train)
         run["VALIDATION/ACCURACY"].log(valid_accuracy)
@@ -214,7 +214,7 @@ if __name__ == "__main__":
             print(
                 "Now generating features for the validation set to simulate the submission."
             )
-            FEAS = generate_test_features(test_loader)
+            FEAS = generate_test_features(model, test_loader)
             FEAS = torch.tensor(FEAS).cuda()
             print("Finding Best Threshold in the given search space.")
             best_score, best_threshold = find_threshold(
