@@ -20,12 +20,12 @@ CONFIG = {
     "SCHEDULER": {
         "CosineAnnealingWarmRestarts": {"T_0": 25, "T_mult": 2, "eta_min": 0}
     },
-    "ArcFace": {"scale": 10, "margin": 0.5, "easy_margin": False, "ls_eps": 0.0},
+    "ArcFace": {"scale": 30, "margin": 0.5, "easy_margin": False, "ls_eps": 0.0},
     "AUGMENTATION": {},
     "PATH": {
         "TRAINING_CSV": "/content/train.csv",
         "TRAIN_PATH": "/content/train_images",
-        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/SHOPEE/WEIGHTS/EfficientNet/B4",
+        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/SHOPEE/WEIGHTS/NFNET/",
     },
     "FOLD": 0,
     "SEARCH_SPACE": np.arange(40, 100, 10),
