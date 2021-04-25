@@ -1,6 +1,7 @@
 from metric import row_wise_f1_score
 from tqdm import tqdm
 import matplotlib.pyplot as plt
+import torch.nn.functional as F
 
 
 def find_threshold(df, features, lower_count_thresh, upper_count_thresh, search_space):
@@ -10,9 +11,12 @@ def find_threshold(df, features, lower_count_thresh, upper_count_thresh, search_
     score_by_threshold = []
     best_score = 0
     best_threshold = -1
+    features = F.normalize(features)
     for i in tqdm(search_space):
         sim_thresh = i / 100
-        selection = ((features @ features.T) > sim_thresh).cpu().numpy()
+        selection = (
+            ((features @ features.T) > sim_thresh).cpu().numpy()
+        )  # TODO: understand features and features.T more.
         matches = []
         oof = []
         for row in selection:

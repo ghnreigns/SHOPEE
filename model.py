@@ -180,5 +180,7 @@ class SHOPEE_PLEASE_HIRE_US(nn.Module):
             ArcFaceCrossEntropyLoss = self.ArcFaceLoss(ArcFaceCosineLogits, labels)
             # print("CE LOSS", ArcFaceCrossEntropyLoss)
             return ArcFaceCrossEntropyLoss
-        embeddings = F.normalize(embeddings)
+        # embeddings = F.normalize(
+        #     embeddings
+        # )  # need to normalize for search threshold to work #TODO: WHY? See threshold.py
         return embeddings
