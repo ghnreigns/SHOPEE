@@ -50,7 +50,7 @@ class ArcFaceLoss(nn.Module):
     ):  # corresponds to cosine_theta_logits = ArcFaceCosineLogits
 
         # cosine = F.linear(F.normalize(input), F.normalize(self.weight))
-        cosine = cosine_theta_logits
+        cosine = cosine_theta_logits.float()
         sine = torch.sqrt(1.0 - torch.pow(cosine, 2))
         phi = cosine * self.cos_m - sine * self.sin_m
         if self.easy_margin:
