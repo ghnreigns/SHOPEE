@@ -190,25 +190,25 @@ if __name__ == "__main__":
     for epoch in range(CONFIG["TRAINING"]["NUM_EPOCHS"]):
         scheduler.step()
         loss_train = train_func(model, train_loader)
-        # loss_valid, valid_accuracy = valid_func(model, valid_loader)
+        loss_valid, valid_accuracy = valid_func(model, valid_loader)
         run["TRAINING/LOSS_VALUE"].log(loss_train)
-        # run["VALIDATION/LOSS_VALUE"].log(loss_train)
-        # run["VALIDATION/ACCURACY"].log(valid_accuracy)
+        run["VALIDATION/LOSS_VALUE"].log(loss_train)
+        run["VALIDATION/ACCURACY"].log(valid_accuracy)
 
-        # if loss_valid < BEST_VAL_LOSS:
-        #     BEST_VAL_LOSS = loss_valid
-        #     torch.save(
-        #         model.state_dict(),
-        #         os.path.join(
-        #             CONFIG["PATH"]["SAVE_WEIGHT_PATH"],
-        #             "BEST_LOSS_FOLD_{}_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}.pt".format(
-        #                 CONFIG["FOLD"],
-        #                 epoch,
-        #                 CONFIG["MODEL"]["MODEL_NAME"],
-        #                 str(CONFIG["TRAINING"]["IMAGE_SIZE"]),
-        #             ),
-        #         ),
-        #     )
+        if loss_valid < BEST_VAL_LOSS:
+            BEST_VAL_LOSS = loss_valid
+            torch.save(
+                model.state_dict(),
+                os.path.join(
+                    CONFIG["PATH"]["SAVE_WEIGHT_PATH"],
+                    "BEST_LOSS_FOLD_{}_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}.pt".format(
+                        CONFIG["FOLD"],
+                        epoch,
+                        CONFIG["MODEL"]["MODEL_NAME"],
+                        str(CONFIG["TRAINING"]["IMAGE_SIZE"]),
+                    ),
+                ),
+            )
 
         if epoch % 2 == 0:
             print(

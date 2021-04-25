@@ -3,7 +3,7 @@ import numpy as np
 
 CONFIG = {
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
-    "MODEL": {"MODEL_NAME": "eca_nfnet_l0", "FC_DIM": 512, "DROPOUT": 0.2},
+    "MODEL": {"MODEL_NAME": "eca_nfnet_l1", "FC_DIM": 512, "DROPOUT": 0.2},
     "NUM_CLASSES": 11014,
     "TRAINING": {
         "IMAGE_SIZE": 512,
@@ -12,7 +12,7 @@ CONFIG = {
         "USE_AMP": True,
         "NUM_WORKERS": 4,
         "ACCUMULATION_STEP": 1,
-        "DEBUG": True,
+        "DEBUG": False,
         "DROP_LAST": True,
     },
     "VALIDATION": {"BATCH_SIZE": 16, "NUM_WORKERS": 4},
