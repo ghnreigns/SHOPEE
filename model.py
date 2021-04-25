@@ -167,6 +167,7 @@ class SHOPEE_PLEASE_HIRE_US(nn.Module):
 
     def forward(self, x, labels=None):
         embeddings = self.get_embeddings(x)  # embedding layer.
+
         # print("PRE ARC LOSS | {}".format(embeddings))
 
         ArcFaceCosineLogits = self.classifier(
@@ -179,4 +180,5 @@ class SHOPEE_PLEASE_HIRE_US(nn.Module):
             ArcFaceCrossEntropyLoss = self.ArcFaceLoss(ArcFaceCosineLogits, labels)
             # print("CE LOSS", ArcFaceCrossEntropyLoss)
             return ArcFaceCrossEntropyLoss
+        embeddings = F.normalize(embeddings)
         return embeddings
