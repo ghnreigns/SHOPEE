@@ -4,6 +4,7 @@ import timm
 import torch.nn.functional as F
 from loss import ArcModule
 from config import CONFIG
+from ArcMargin import *
 
 
 class SHOPEE_HIRE_ME_MODEL(nn.Module):
@@ -107,9 +108,9 @@ class SHOPEE_PLEASE_HIRE_US(nn.Module):
     def __init__(
         self,
         num_classes=11014,
-        dropout=0.3,
+        dropout=0.0,
         embedding_size=512,
-        backbone="vgg16",
+        backbone="efficientnet_b0",
         pretrained=True,
     ):
         super(SHOPEE_PLEASE_HIRE_US, self).__init__()
@@ -117,10 +118,14 @@ class SHOPEE_PLEASE_HIRE_US(nn.Module):
         self.embedding_size = embedding_size
         self.num_classes = num_classes
         self.backbone = timm.create_model(backbone, pretrained=pretrained)
+        self.classifier = ArcFaceClassifier(
+            self.embedding_size, self.num_classes
+        )  # this is already pre-determined, we know that our final classifier should take in embedding size and number of classes
+
         self.adaptive_pooling = torch.nn.AdaptiveAvgPool2d(output_size=(1, 1))
         self.backbone.reset_classifier(num_classes=0, global_pool="avg")
 
-        in_features = self.backbone.num_features
+        self.in_features = self.backbone.num_features
 
         self.BN_DR_FC_BN = torch.nn.Sequential(  # Now since the classifier head is reset, we replace it with                                                                             #
             torch.nn.BatchNorm1d(
@@ -138,11 +143,7 @@ class SHOPEE_PLEASE_HIRE_US(nn.Module):
         )  # fc_dim is the embeddings we want, which is proposed to be 512.
         self._init_params()
 
-        self.ArcMargin = ArcModule(
-            in_features=self.embedding_size,
-            out_features=self.num_classes,
-            **CONFIG["ArcFace"]
-        )
+        self.ArcFaceLoss = ArcFaceLoss(**CONFIG["ArcFace"])
 
     def _init_params(self):
         # CUSTOM INIT note that try to think if there is a more
@@ -155,18 +156,27 @@ class SHOPEE_PLEASE_HIRE_US(nn.Module):
         nn.init.constant_(self.BN_DR_FC_BN[3].weight, 1)
         nn.init.constant_(self.BN_DR_FC_BN[3].bias, 0)
 
-    def forward(self, x, labels=None):
+    def get_embeddings(self, x):
         batch_size = x.shape[0]
         features = self.backbone.forward_features(x)
         features = self.adaptive_pooling(features)
         features = features.view(batch_size, -1)
-        features = self.bn1(features)
-        features = self.dropout(features)
-        features = self.adaptive_pooling(features)
-        features = features.view(features.size(0), -1)
+        # print(features[0][0]) # 0.1854 established | to keep in check for debugging.
         features = self.BN_DR_FC_BN(features)
+        return features  # at this stage, we can reuse this to get embeddings only, note x_norm @ W_norm is not part of embedding layer
 
+    def forward(self, x, labels=None):
+        embeddings = self.get_embeddings(x)  # embedding layer.
+        # print("PRE ARC LOSS | {}".format(embeddings))
+
+        ArcFaceCosineLogits = self.classifier(
+            embeddings
+        )  # this outputs x_norm @ W_norm logits. rmb x_norm = x/||x|| and W_norm = W/||W||
+        # ready to be passed into to arc LOSS FUNCTION
+        # recall this is also cos(theta) = x_norm @ W_norm
+        # print("ARC COSINE LOGITS", ArcFaceCosineLogits)
         if labels is not None:
-            arcfaceLogits = self.ArcMargin(features, labels)
-            return arcfaceLogits
-        return features
+            ArcFaceCrossEntropyLoss = self.ArcFaceLoss(ArcFaceCosineLogits, labels)
+            # print("CE LOSS", ArcFaceCrossEntropyLoss)
+            return ArcFaceCrossEntropyLoss
+        return embeddings

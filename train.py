@@ -128,25 +128,26 @@ if __name__ == "__main__":
 
     run["Params"] = CONFIG
 
-    # model = SHOPEE_HIRE_ME_MODEL(
+    if not os.path.exists(CONFIG["PATH"]["SAVE_WEIGHT_PATH"]):
+        print("new save folder created")
+        os.makedirs(CONFIG["PATH"]["SAVE_WEIGHT_PATH"])
+
+    # model = SHOPEE_EfficientNetB4(
     #     num_classes=CONFIG["NUM_CLASSES"],
     #     dropout=CONFIG["MODEL"]["DROPOUT"],
     #     embedding_size=CONFIG["MODEL"]["FC_DIM"],
     #     backbone=CONFIG["MODEL"]["MODEL_NAME"],
     #     pretrained=True,
     # )
-    # model.to(device)
-    if not os.path.exists(CONFIG["PATH"]["SAVE_WEIGHT_PATH"]):
-        print("new save folder created")
-        os.makedirs(CONFIG["PATH"]["SAVE_WEIGHT_PATH"])
 
-    model = SHOPEE_EfficientNetB4(
+    model = SHOPEE_PLEASE_HIRE_US(
         num_classes=CONFIG["NUM_CLASSES"],
         dropout=CONFIG["MODEL"]["DROPOUT"],
         embedding_size=CONFIG["MODEL"]["FC_DIM"],
         backbone=CONFIG["MODEL"]["MODEL_NAME"],
         pretrained=True,
     )
+
     model = model.to(device)
     df = makeFold()
     df_train = df[df["fold"] != CONFIG["FOLD"]]
