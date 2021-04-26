@@ -2,6 +2,7 @@ import numpy as np
 
 
 CONFIG = {
+    "ID": "ECA_NFNET_L1",
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
     "MODEL": {"MODEL_NAME": "eca_nfnet_l1", "FC_DIM": 512, "DROPOUT": 0.2},
     "NUM_CLASSES": 11014,
