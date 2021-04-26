@@ -8,7 +8,7 @@ CONFIG = {
     "TRAINING": {
         "IMAGE_SIZE": 512,
         "BATCH_SIZE": 16,
-        "NUM_EPOCHS": 12,
+        "NUM_EPOCHS": 25,
         "USE_AMP": True,
         "NUM_WORKERS": 4,
         "ACCUMULATION_STEP": 1,
@@ -18,7 +18,7 @@ CONFIG = {
     "VALIDATION": {"BATCH_SIZE": 16, "NUM_WORKERS": 4},
     "OPTIMIZER": {"Adam": {"lr": 1e-4}},
     "SCHEDULER": {
-        "CosineAnnealingWarmRestarts": {"T_0": 12, "T_mult": 2, "eta_min": 0}
+        "CosineAnnealingWarmRestarts": {"T_0": 25, "T_mult": 2, "eta_min": 0}
     },
     "ArcFace": {"scale": 30, "margin": 0.5, "easy_margin": False, "ls_eps": 0.0},
     "AUGMENTATION": {},

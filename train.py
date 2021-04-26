@@ -190,10 +190,12 @@ if __name__ == "__main__":
     BEST_TRAIN_LOSS = 100000
     for epoch in range(CONFIG["TRAINING"]["NUM_EPOCHS"]):
         scheduler.step()
-        loss_train = train_func(model, train_loader)
+        loss_train = train_func(
+            model, train_loader
+        )  # TODO: note this loss_train is the average of all losses, thus what you see inside the end is not a representative of the final averaged loss. As sin did not print it out.
         loss_valid, valid_accuracy = valid_func(model, valid_loader)
         run["TRAINING/LOSS_VALUE"].log(loss_train)
-        run["VALIDATION/LOSS_VALUE"].log(loss_train)
+        run["VALIDATION/LOSS_VALUE"].log(loss_valid)
         run["VALIDATION/ACCURACY"].log(valid_accuracy)
 
         if loss_train < BEST_TRAIN_LOSS:
