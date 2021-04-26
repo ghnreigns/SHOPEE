@@ -228,5 +228,13 @@ if __name__ == "__main__":
                 BEST_F1_SCORE = best_score
                 torch.save(
                     model.state_dict(),
-                    f"{CONFIG['PATH']['SAVE_WEIGHT_PATH']}{CONFIG['MODEL']['MODEL_NAME']}_fold{CONFIG['FOLD']}_{CONFIG['TRAINING']['IMAGE_SIZE']}_epoch{epoch}.pth",
+                    os.path.join(
+                        CONFIG["PATH"]["SAVE_WEIGHT_PATH"],
+                        "BEST_F1_SCORE{}_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}.pt".format(
+                            CONFIG["FOLD"],
+                            epoch,
+                            CONFIG["MODEL"]["MODEL_NAME"],
+                            str(CONFIG["TRAINING"]["IMAGE_SIZE"]),
+                        ),
+                    ),
                 )
