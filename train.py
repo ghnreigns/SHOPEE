@@ -187,6 +187,7 @@ if __name__ == "__main__":
     )
     BEST_F1_SCORE = 0
     BEST_VAL_LOSS = 1000000
+    BEST_TRAIN_LOSS = 100000
     for epoch in range(CONFIG["TRAINING"]["NUM_EPOCHS"]):
         scheduler.step()
         loss_train = train_func(model, train_loader)
@@ -195,8 +196,8 @@ if __name__ == "__main__":
         run["VALIDATION/LOSS_VALUE"].log(loss_train)
         run["VALIDATION/ACCURACY"].log(valid_accuracy)
 
-        if loss_valid < BEST_VAL_LOSS:
-            BEST_VAL_LOSS = loss_valid
+        if loss_train < BEST_TRAIN_LOSS:
+            BEST_TRAIN_LOSS = loss_train
             torch.save(
                 model.state_dict(),
                 os.path.join(
