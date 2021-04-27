@@ -189,6 +189,7 @@ if __name__ == "__main__":
     BEST_VAL_LOSS = 1000000
     BEST_TRAIN_LOSS = 100000
     for epoch in range(CONFIG["TRAINING"]["NUM_EPOCHS"]):
+        print("EPOCH | {}".format(epoch))
         scheduler.step()
         loss_train = train_func(
             model, train_loader
