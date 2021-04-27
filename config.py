@@ -28,7 +28,7 @@ CONFIG = {
         "TRAIN_PATH": "/content/train_images",
         "SAVE_WEIGHT_PATH": "/content/drive/My Drive/SHOPEE/WEIGHTS/eca_nfnet_l1/26_APRIL_2021/",
     },
-    "FOLD": 2,
+    "FOLD": 3,
     "SEARCH_SPACE": np.arange(40, 100, 10),
     "SEED": 1930,
 }
