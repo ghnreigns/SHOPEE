@@ -183,7 +183,7 @@ if __name__ == "__main__":
                 model.state_dict(),
                 os.path.join(
                     CONFIG["PATH"]["SAVE_WEIGHT_PATH"],
-                    "BEST_LOSS_FOLD_{}_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}.pt".format(
+                    "BEST_LOSS_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}.pt".format(
                         CONFIG["FOLD"],
                         epoch,
                         CONFIG["MODEL"]["MODEL_NAME"],
