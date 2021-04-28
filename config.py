@@ -26,7 +26,7 @@ CONFIG = {
     "PATH": {
         "TRAINING_CSV": "/content/train.csv",
         "TRAIN_PATH": "/content/train_images",
-        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/SHOPEE/WEIGHTS/eca_nfnet_l1/26_APRIL_2021/",
+        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/eca_nfnet_l1/26_APRIL_2021/",
     },
     "FOLD": 4,
     "SEARCH_SPACE": np.arange(40, 100, 10),
