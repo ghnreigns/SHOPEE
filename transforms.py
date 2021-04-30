@@ -42,7 +42,6 @@ transform_train = albumentations.Compose(
                 albumentations.OneOf(
                     [
                         albumentations.GaussNoise(mean=15),
-                        albumentations.GaussianBlur(blur_limit=10, p=0.4),
                         albumentations.MotionBlur(p=0.2),
                     ]
                 ),
