@@ -13,7 +13,9 @@ from loss import ArcModule
 from dataset import SHOPEEDataset
 from model import *
 from model_HN import *
-from config import CONFIG
+
+# from config import CONFIG
+from config_efficientnet import CONFIG
 from threshold import find_threshold
 
 
