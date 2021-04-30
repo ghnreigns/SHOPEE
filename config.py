@@ -2,9 +2,9 @@ import numpy as np
 
 
 CONFIG = {
-    "ID": "efa_nfnet_l1",
+    "ID": "eca_nfnet_l1",
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
-    "MODEL": {"MODEL_NAME": "efa_nfnet_l1", "FC_DIM": 512, "DROPOUT": 0.2},
+    "MODEL": {"MODEL_NAME": "eca_nfnet_l1", "FC_DIM": 512, "DROPOUT": 0.2},
     "NUM_CLASSES": 11014,
     "TRAINING": {
         "IMAGE_SIZE": 512,
