@@ -15,9 +15,9 @@ from model import *
 from model_HN import *
 
 # from config import CONFIG
-# from config_efficientnet import CONFIG
+from config_efficientnet import CONFIG
 
-from config_eca_nfnet_l1 import CONFIG
+# from config_eca_nfnet_l1 import CONFIG
 from threshold import find_threshold
 
 
