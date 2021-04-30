@@ -33,7 +33,7 @@ transforms_valid = albumentations.Compose(
     ]
 )
 
-transform_train = albumentations.Compose(
+transforms_train = albumentations.Compose(
     [
         CONFIG["TRAINING"]["IMAGE_SIZE"],
         CONFIG["TRAINING"]["IMAGE_SIZE"],
