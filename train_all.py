@@ -12,6 +12,7 @@ from tqdm import tqdm
 from loss import ArcModule
 from dataset import SHOPEEDataset
 from model import *
+from model_HN import *
 from config import CONFIG
 from threshold import find_threshold
 
@@ -132,22 +133,20 @@ if __name__ == "__main__":
         print("new save folder created")
         os.makedirs(CONFIG["PATH"]["SAVE_WEIGHT_PATH"])
 
-    # model = SHOPEE_EfficientNetB4(
+    # model = SHOPEE_PLEASE_HIRE_US(
     #     num_classes=CONFIG["NUM_CLASSES"],
     #     dropout=CONFIG["MODEL"]["DROPOUT"],
     #     embedding_size=CONFIG["MODEL"]["FC_DIM"],
     #     backbone=CONFIG["MODEL"]["MODEL_NAME"],
     #     pretrained=True,
     # )
-
-    model = SHOPEE_PLEASE_HIRE_US(
+    model = HN_ARCFACE(
         num_classes=CONFIG["NUM_CLASSES"],
         dropout=CONFIG["MODEL"]["DROPOUT"],
         embedding_size=CONFIG["MODEL"]["FC_DIM"],
         backbone=CONFIG["MODEL"]["MODEL_NAME"],
         pretrained=True,
     )
-
     model = model.to(device)
     df = makeFold()
 
