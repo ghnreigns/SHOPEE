@@ -170,11 +170,12 @@ if __name__ == "__main__":
     BEST_VAL_LOSS = 1000000
     BEST_TRAIN_LOSS = 100000
     for epoch in range(CONFIG["TRAINING"]["NUM_EPOCHS"]):
-        print("EPOCH | {}".format(epoch))
+
         scheduler.step()
         loss_train = train_func(
             model, train_loader
         )  # TODO: note this loss_train is the average of all losses, thus what you see inside the end is not a representative of the final averaged loss. As sin did not print it out.
+        print("EPOCH | {} : LOSS | {}".format(epoch + 1, loss_train))
         run["TRAINING/LOSS_VALUE"].log(loss_train)
 
         if loss_train < BEST_TRAIN_LOSS:
@@ -185,7 +186,6 @@ if __name__ == "__main__":
                     CONFIG["PATH"]["SAVE_WEIGHT_PATH"],
                     "BEST_LOSS_EPOCH_{}_MODEL_{}_IMAGE_SIZE_{}.pt".format(
                         CONFIG["FOLD"],
-                        epoch,
                         CONFIG["MODEL"]["MODEL_NAME"],
                         str(CONFIG["TRAINING"]["IMAGE_SIZE"]),
                     ),
