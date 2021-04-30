@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import math
 
 
-class ArcFaceClassifier(nn.Module):
+class ArcFaceNormalize(nn.Module):
     def __init__(self, embedding_size, num_classes):
         super().__init__()
         self.W = nn.Parameter(torch.Tensor(embedding_size, num_classes))
