@@ -4,7 +4,7 @@ import numpy as np
 CONFIG = {
     "ID": "ECA_NFNET_L0",
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
-    "MODEL": {"MODEL_NAME": "eca_nfnet_l1", "FC_DIM": 512, "DROPOUT": 0.2},
+    "MODEL": {"MODEL_NAME": "eca_nfnet_l0", "FC_DIM": 512, "DROPOUT": 0.2},
     "NUM_CLASSES": 11014,
     "TRAINING": {
         "IMAGE_SIZE": 512,
@@ -26,7 +26,7 @@ CONFIG = {
     "PATH": {
         "TRAINING_CSV": "/content/train.csv",
         "TRAIN_PATH": "/content/train_images",
-        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/eca_nfnet_l1/30_APRIL_2021/",
+        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/eca_nfnet_l0/30_APRIL_2021_V2/",
     },
     "FOLD": "ALL",
     "SEARCH_SPACE": np.arange(40, 100, 10),
