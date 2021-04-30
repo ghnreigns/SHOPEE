@@ -17,7 +17,7 @@ CONFIG = {
         "DROP_LAST": True,
     },
     "VALIDATION": {"BATCH_SIZE": 16, "NUM_WORKERS": 4},
-    "OPTIMIZER": {"Adam": {"lr": 1e-4}},
+    "OPTIMIZER": {"Adam": {"lr": 3e-5}},
     "SCHEDULER": {
         "CosineAnnealingLR": {"T_max": 16, "eta_min": 1e-7, "last_epoch": -1}
         # "CosineAnnealingWarmRestarts": {"T_0": 12, "T_mult": 2, "eta_min": 0}
@@ -27,7 +27,7 @@ CONFIG = {
     "PATH": {
         "TRAINING_CSV": "/content/train.csv",
         "TRAIN_PATH": "/content/train_images",
-        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/tf_efficientnet_b6_ns/30_APRIL_2021/"
+        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/tf_efficientnet_b6_ns/1st_MAY_V1/"
         # "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/eca_nfnet_l0/30_APRIL_2021_V2/",
     },
     "FOLD": "ALL",
