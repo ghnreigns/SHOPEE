@@ -147,8 +147,8 @@ class HN_ARCFACE_SWIN_TRANSFORMER(nn.Module):
     def get_embeddings(self, x):
         batch_size = x.shape[0]
         features = self.backbone.forward_features(x)
-        features = self.adaptive_pooling(features)
-        features = features.view(batch_size, -1)
+        # features = self.adaptive_pooling(features)
+        # features = features.view(batch_size, -1)
         # print(features[0][0]) # 0.1854 established | to keep in check for debugging.
         features = self.BN_DR_FC_BN(features)
         return features  # at this stage, we can reuse this to get embeddings only, note x_norm @ W_norm is not part of embedding layer
