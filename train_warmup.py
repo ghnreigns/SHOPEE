@@ -123,7 +123,9 @@ if __name__ == "__main__":
     from make_folds import makeFold
     from transforms import transforms_train, transforms_valid
     import neptune.new as neptune
-    from config_swin_small_patch4_window7_224 import CONFIG
+
+    # from config_swin_small_patch4_window7_224 import CONFIG
+    from config_swin_large_patch4_window12_384 import CONFIG
 
     seed_all(CONFIG["SEED"])
 
