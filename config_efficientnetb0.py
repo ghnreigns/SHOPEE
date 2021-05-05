@@ -2,10 +2,10 @@ import numpy as np
 
 
 CONFIG = {
-    "ID": "swin",
+    "ID": "efficietnet_b0",
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
     "MODEL": {
-        "MODEL_NAME": "swin_small_patch4_window7_224",
+        "MODEL_NAME": "efficietnet_b0",
         "FC_DIM": 512,
         "DROPOUT": 0.2,
     },

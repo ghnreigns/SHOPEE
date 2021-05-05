@@ -139,7 +139,14 @@ if __name__ == "__main__":
         print("new save folder created")
         os.makedirs(CONFIG["PATH"]["SAVE_WEIGHT_PATH"])
 
-    model = HN_ARCFACE(
+    # model = HN_ARCFACE(
+    #     num_classes=CONFIG["NUM_CLASSES"],
+    #     dropout=CONFIG["MODEL"]["DROPOUT"],
+    #     embedding_size=CONFIG["MODEL"]["FC_DIM"],
+    #     backbone=CONFIG["MODEL"]["MODEL_NAME"],
+    #     pretrained=True,
+    # )
+    model = HN_ARCFACE_SWIN_TRANSFORMER(
         num_classes=CONFIG["NUM_CLASSES"],
         dropout=CONFIG["MODEL"]["DROPOUT"],
         embedding_size=CONFIG["MODEL"]["FC_DIM"],
