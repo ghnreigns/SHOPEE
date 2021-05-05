@@ -16,7 +16,7 @@ from model_HN import *
 
 # from config import CONFIG
 # from config_efficientnet import CONFIG
-from config_seresnext50_32x4d import CONFIG
+# from config_seresnext50_32x4d import CONFIG
 
 # from config_eca_nfnet_l1 import CONFIG
 from threshold import find_threshold
@@ -123,6 +123,7 @@ if __name__ == "__main__":
     from make_folds import makeFold
     from transforms import transforms_train, transforms_valid
     import neptune.new as neptune
+    from config_swin_small_patch4_window7_224 import CONFIG
 
     seed_all(CONFIG["SEED"])
 
