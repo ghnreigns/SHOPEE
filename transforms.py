@@ -1,6 +1,6 @@
 import albumentations
 from albumentations.pytorch.transforms import ToTensorV2
-from config import CONFIG
+from config_swin_small_patch4_window7_224 import CONFIG
 
 # transforms_train = albumentations.Compose(
 #     [
