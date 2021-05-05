@@ -111,7 +111,7 @@ class HN_ARCFACE_SWIN_TRANSFORMER(nn.Module):
 
         self.adaptive_pooling = torch.nn.AdaptiveAvgPool2d(output_size=(1, 1))
 
-        self.in_features = self.backbone.head.num_features
+        self.in_features = self.backbone.num_features
 
         self.BN_DR_FC_BN = torch.nn.Sequential(  # Now since the classifier head is reset, we replace it with                                                                             #
             torch.nn.BatchNorm1d(
