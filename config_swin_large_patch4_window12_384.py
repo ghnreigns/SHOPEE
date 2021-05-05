@@ -12,7 +12,7 @@ CONFIG = {
     "NUM_CLASSES": 11014,
     "TRAINING": {
         "IMAGE_SIZE": 384,
-        "BATCH_SIZE": 32,
+        "BATCH_SIZE": 16,
         "NUM_EPOCHS": 16,
         "USE_AMP": True,
         "NUM_WORKERS": 4,
