@@ -8,7 +8,7 @@ CONFIG = {
     "NUM_CLASSES": 11014,
     "TRAINING": {
         "IMAGE_SIZE": 224,
-        "BATCH_SIZE": 16,
+        "BATCH_SIZE": 64,
         "NUM_EPOCHS": 16,
         "USE_AMP": True,
         "NUM_WORKERS": 4,
@@ -16,7 +16,7 @@ CONFIG = {
         "DEBUG": False,
         "DROP_LAST": True,
     },
-    "VALIDATION": {"BATCH_SIZE": 16, "NUM_WORKERS": 4},
+    "VALIDATION": {"BATCH_SIZE": 64, "NUM_WORKERS": 4},
     "OPTIMIZER": {"Adam": {"lr": 3e-5}},
     "SCHEDULER": {
         "CosineAnnealingLR": {"T_max": 16, "eta_min": 1e-7, "last_epoch": -1}
