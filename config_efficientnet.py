@@ -4,11 +4,11 @@ import numpy as np
 CONFIG = {
     "ID": "effnetb6ns",
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
-    "MODEL": {"MODEL_NAME": "tf_efficientnet_b6_ns", "FC_DIM": 512, "DROPOUT": 0.2},
+    "MODEL": {"MODEL_NAME": "tf_efficientnet_b0_ns", "FC_DIM": 512, "DROPOUT": 0.2},
     "NUM_CLASSES": 11014,
     "TRAINING": {
-        "IMAGE_SIZE": 512,
-        "BATCH_SIZE": 8,
+        "IMAGE_SIZE": 224,
+        "BATCH_SIZE": 16,
         "NUM_EPOCHS": 16,
         "USE_AMP": True,
         "NUM_WORKERS": 4,
@@ -27,7 +27,7 @@ CONFIG = {
     "PATH": {
         "TRAINING_CSV": "/content/train.csv",
         "TRAIN_PATH": "/content/train_images",
-        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/tf_efficientnet_b6_ns/1st_MAY_V1/"
+        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/tf_efficientnet_b0_ns/6th_MAY_V1/"
         # "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/eca_nfnet_l0/30_APRIL_2021_V2/",
     },
     "FOLD": "ALL",

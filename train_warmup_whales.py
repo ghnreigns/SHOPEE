@@ -124,9 +124,10 @@ if __name__ == "__main__":
     from transforms import transforms_train, transforms_valid
     import neptune.new as neptune
 
-    from config_swin_small_patch4_window7_224 import CONFIG
+    # from config_swin_small_patch4_window7_224 import CONFIG
 
     # from config_swin_large_patch4_window12_384 import CONFIG
+    from config_efficientnet import CONFIG
 
     seed_all(CONFIG["SEED"])
 
@@ -142,7 +143,14 @@ if __name__ == "__main__":
         print("new save folder created")
         os.makedirs(CONFIG["PATH"]["SAVE_WEIGHT_PATH"])
 
-    model = HN_ARCFACE_SWIN_TRANSFORMER(
+    # model = HN_ARCFACE_SWIN_TRANSFORMER(
+    #     num_classes=CONFIG["NUM_CLASSES"],
+    #     dropout=CONFIG["MODEL"]["DROPOUT"],
+    #     embedding_size=CONFIG["MODEL"]["FC_DIM"],
+    #     backbone=CONFIG["MODEL"]["MODEL_NAME"],
+    #     pretrained=True,
+    # )
+    model = HN_ARCFACE(
         num_classes=CONFIG["NUM_CLASSES"],
         dropout=CONFIG["MODEL"]["DROPOUT"],
         embedding_size=CONFIG["MODEL"]["FC_DIM"],
