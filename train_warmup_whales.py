@@ -166,7 +166,7 @@ if __name__ == "__main__":
     parameters = filter(lambda p: p.requires_grad, model.parameters())
     optimizer = torch.optim.Adam(
         [{"params": parameters}, {"params": model.ArcFaceLoss.parameters()}],
-        lr=2e-4,
+        lr=1e-4,
         weight_decay=0.001,
     )
 
