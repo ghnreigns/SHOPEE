@@ -1,7 +1,8 @@
 import albumentations
 from albumentations.pytorch.transforms import ToTensorV2
 from config_swin_small_patch4_window7_224 import CONFIG
-from config_efficientnet import CONFIG
+
+# from config_efficientnet import CONFIG
 
 # from config_swin_large_patch4_window12_384 import CONFIG
 

@@ -6,7 +6,7 @@ CONFIG = {
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
     "MODEL": {
         "MODEL_NAME": "swin_small_patch4_window7_224",
-        "FC_DIM": 256,
+        "FC_DIM": 512,
         "DROPOUT": 0.2,
     },
     "NUM_CLASSES": 11014,
