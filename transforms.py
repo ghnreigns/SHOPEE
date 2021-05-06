@@ -86,10 +86,10 @@ transforms_train = albumentations.Compose(
             p=1,
         ),
         albumentations.Cutout(
-            num_holes=1,
+            num_holes=3,
             max_h_size=CONFIG["TRAINING"]["IMAGE_SIZE"] // 5,
             max_w_size=CONFIG["TRAINING"]["IMAGE_SIZE"] // 5,
-            p=0.2,
+            p=0.5,
         ),
         albumentations.Normalize(),
         ToTensorV2(p=1.0),
