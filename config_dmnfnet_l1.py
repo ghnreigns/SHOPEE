@@ -5,7 +5,7 @@ CONFIG = {
     "ID": "swin",
     "COMPETITION_NAME": "Shopee - Price Match Guarantee",
     "MODEL": {
-        "MODEL_NAME": "dm_nfnet_f0 ",
+        "MODEL_NAME": "dm_nfnet_f1 ",
         "FC_DIM": 512,
         "DROPOUT": 0.2,
     },
