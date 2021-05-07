@@ -128,7 +128,7 @@ if __name__ == "__main__":
 
     # from config_swin_large_patch4_window12_384 import CONFIG
     # from config_efficientnet import CONFIG
-    from config_dmnfnet_l1 import CONFIG
+    from config_tf_efficientnet_b4_ns import CONFIG
 
     seed_all(CONFIG["SEED"])
 

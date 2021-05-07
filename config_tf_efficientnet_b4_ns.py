@@ -31,7 +31,7 @@ CONFIG = {
     "PATH": {
         "TRAINING_CSV": "/content/train.csv",
         "TRAIN_PATH": "/content/train_images",
-        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/dm_nfnet_f0/7th_MAY_V1/"
+        "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/tf_efficientnet_b4_ns/7th_MAY_V1/"
         # "SAVE_WEIGHT_PATH": "/content/drive/My Drive/Shopee - Price Match Guarantee/WEIGHTS/eca_nfnet_l0/30_APRIL_2021_V2/",
     },
     "FOLD": "ALL",
